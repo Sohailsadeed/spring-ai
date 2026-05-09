@@ -1,0 +1,81 @@
+############################
+# 🚫 Eclipse Workspace (CRITICAL)
+############################
+.metadata/
+
+############################
+# 🚫 Build outputs (Maven/Gradle)
+############################
+**/target/
+**/build/
+**/out/
+
+############################
+# 🚫 Logs
+############################
+*.log
+logs/
+
+############################
+# 🚫 OS files
+############################
+.DS_Store
+Thumbs.db
+
+############################
+# 🚫 Eclipse project files
+############################
+.project
+.classpath
+.settings/
+
+############################
+# 🚫 Java compiled files
+############################
+*.class
+
+############################
+# 🚫 Maven / Gradle cache
+############################
+.mvn/wrapper/maven-wrapper.jar
+.gradle/
+
+############################
+# 🚫 Environment variables & secrets
+############################
+.env
+.env.*
+**/.env
+
+############################
+# 🚫 Spring Boot sensitive configs
+############################
+application-dev.properties
+application-prod.properties
+application-local.properties
+**/application-dev.properties
+**/application-prod.properties
+**/application-local.properties
+
+############################
+# 🚫 API Keys / Credentials (AI)
+############################
+*.pem
+*.key
+*.crt
+*.p12
+**/secrets/
+**/credentials/
+
+############################
+# 🚫 Node (for Chrome extension if inside repo)
+############################
+node_modules/
+dist/
+build/
+
+############################
+# 🚫 Misc
+############################
+*.tmp
+*.swp

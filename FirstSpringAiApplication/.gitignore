@@ -1,0 +1,67 @@
+############################
+# Build files
+############################
+/target/
+/build/
+
+############################
+# Logs
+############################
+*.log
+logs/
+
+############################
+# OS files
+############################
+.DS_Store
+Thumbs.db
+
+############################
+# Eclipse files
+############################
+.project
+.classpath
+.settings/
+.metadata/
+
+############################
+# Java compiled files
+############################
+*.class
+
+############################
+# Maven / Gradle
+############################
+.mvn/wrapper/maven-wrapper.jar
+.gradle/
+
+############################
+# Environment & Secrets
+############################
+.env
+.env.*
+
+application-dev.properties
+application-prod.properties
+application-local.properties
+
+############################
+# API Keys / AI configs
+############################
+**/secrets/
+**/credentials/
+*.pem
+*.key
+
+############################
+# Node (Chrome extension part)
+############################
+node_modules/
+dist/
+build/
+
+############################
+# Misc
+############################
+*.tmp
+*.swp
