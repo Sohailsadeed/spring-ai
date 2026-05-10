@@ -3,7 +3,7 @@ package com.spring.ai.service;
 import java.util.List;
 
 import org.springframework.ai.chat.client.ChatClient;
-import org.springframework.ai.chat.model.ChatModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;
 
@@ -12,12 +12,8 @@ import com.spring.ai.entity.Language;
 @Service
 public class ChatServiceImpl implements ChatService {
 	
+@Autowired	
 private ChatClient chatClient;
-	
-	public ChatServiceImpl(ChatModel chatModel) {
-		System.out.println(chatModel.getClass().getName());
-		this.chatClient = ChatClient.builder(chatModel).build();
-	}
 	
 	@Override
 	public List<Language> chat(String query) {
@@ -26,13 +22,14 @@ private ChatClient chatClient;
 //				.user("Provide suggstions for a Student aiming to be an AI Engineer")			
 //				.call()
 //				.chatResponse()
-//				.getMetadata();;
+//				.getMetadata()
+//				.getModel();
 //		System.out.println(metaDeta);
 //				return "";
-//		// .content() is equivalent to .grtResult().getOutput().getContent()
+		
+//		.content() is equivalent to .grtResult().getOutput().getContent()
 		
 		List<Language> languages = chatClient.prompt()
-					.system("You are a Linguist")
 					.user(query)
 					.call()
 					.entity(new ParameterizedTypeReference<List<Language>>() {});
