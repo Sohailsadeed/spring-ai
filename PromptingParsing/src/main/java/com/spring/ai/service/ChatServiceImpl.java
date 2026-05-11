@@ -27,7 +27,7 @@ private ChatClient chatClient;
 //		System.out.println(metaDeta);
 //				return "";
 		
-//		.content() is equivalent to .grtResult().getOutput().getContent()
+//		.content() is equivalent to .getResult().getOutput().getContent()
 		
 		List<Language> languages = chatClient.prompt()
 					.user(query)
