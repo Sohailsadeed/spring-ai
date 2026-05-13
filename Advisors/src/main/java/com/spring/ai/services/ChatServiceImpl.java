@@ -29,7 +29,7 @@ public class ChatServiceImpl implements ChatService {
 
 		return chatClient
 				.prompt()
-//				.system(system-> system.text(systemMessage).param("technology", "Springboot"))
+				.system(system-> system.text(systemMessage).param("technology", "Springboot"))
 				.user(user -> user.text(userMessage).params(Map.of("question",userInput)))
 				.call()
 				.content();
