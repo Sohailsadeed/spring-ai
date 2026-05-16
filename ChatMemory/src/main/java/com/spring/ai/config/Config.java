@@ -25,7 +25,7 @@ import org.slf4j.Logger;
 			logger.info("Class of the Chat Memory: " + chatMemory.getClass().getName());
 			return chatClientBuilder.defaultOptions(GoogleGenAiChatOptions.builder()
 					.model("gemini-2.5-flash-lite")
-					.temperature(0.7)
+					.temperature(0.2)
 					.maxOutputTokens(256)
 					.build())
 					.defaultAdvisors(chatMemoryAdvisor, new SimpleLoggerAdvisor())

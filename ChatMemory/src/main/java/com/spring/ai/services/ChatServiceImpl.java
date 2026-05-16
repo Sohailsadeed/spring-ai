@@ -2,6 +2,7 @@ package com.spring.ai.services;
 
 import java.util.Map;
 
+import com.spring.ai.ChatMemoryApplication;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.ai.chat.prompt.Prompt;
@@ -15,6 +16,8 @@ import org.springframework.beans.factory.annotation.Value;
 
 @Service
 public class ChatServiceImpl implements ChatService {
+
+    private final ChatMemoryApplication chatMemoryApplication;
 	
 	@Autowired	
 	private ChatClient chatClient;
@@ -24,8 +27,12 @@ public class ChatServiceImpl implements ChatService {
 	
 	@Value("classpath:/prompts/user-message.st")
 	private Resource userMessage;
+
+    ChatServiceImpl(ChatMemoryApplication chatMemoryApplication) {
+        this.chatMemoryApplication = chatMemoryApplication;
+    }
 	@Override
-	public String chat(String userInput) {
+	public String chat(String userInput, String conversationId) {
 		
 		SystemPromptTemplate systemTemplate = SystemPromptTemplate.builder()
 																	.resource(systemMessage)
@@ -38,6 +45,10 @@ public class ChatServiceImpl implements ChatService {
 		
 		Prompt prompt = new Prompt(systemTemplate.createMessage(), userTemplate.createMessage());
 		
-		return chatClient.prompt(prompt).advisors(a -> a.param(ChatMemory.CONVERSATION_ID, "user")).call().content();
+		return chatClient
+				.prompt(prompt)
+				.advisors(advisorSpec -> advisorSpec.param(ChatMemory.CONVERSATION_ID, conversationId))
+				.call()
+				.content();
 	}
 }
