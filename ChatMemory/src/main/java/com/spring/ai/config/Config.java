@@ -5,6 +5,9 @@ import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
 import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
 import org.springframework.ai.chat.memory.ChatMemory;
+import org.springframework.ai.chat.memory.InMemoryChatMemoryRepository;
+import org.springframework.ai.chat.memory.MessageWindowChatMemory;
+import org.springframework.ai.chat.memory.repository.jdbc.JdbcChatMemoryRepository;
 import org.springframework.ai.google.genai.GoogleGenAiChatOptions;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +19,13 @@ import org.slf4j.Logger;
 	@Configuration
 	public class Config {
 		
+		@Bean
+		public ChatMemory chatMemory(JdbcChatMemoryRepository jdbcChatMemoryRepository) {
+			return MessageWindowChatMemory.builder()
+													.chatMemoryRepository(jdbcChatMemoryRepository)
+													.maxMessages(14)
+													.build();
+		}
 		@Bean
 		public ChatClient chatClient(ChatClient.Builder chatClientBuilder, ChatMemory chatMemory) {
 			Logger logger = LoggerFactory.getLogger(ChatMemoryApplication.class);
